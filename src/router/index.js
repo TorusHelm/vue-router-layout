@@ -1,22 +1,80 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+
+const layoutTabs = [
+  {
+    path: "/tabs/red",
+    title: "red",
+  },
+  {
+    path: "/tabs/green",
+    title: "green",
+  },
+  {
+    path: "/tabs/blue",
+    title: "blue",
+  },
+];
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    component: () => import("@/pages/index.vue"),
+    meta: {
+      title: "Index page",
+    }
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: "/page",
+    component: () => import("@/pages/page.vue"),
+    meta: {
+      title: "Default page",
+    },
+  },
+  {
+    path: "/tabs",
+    component: () => import("@/layouts/components/stub.vue"),
+    redirect: "/tabs/red",
+    meta: {
+      layout: "tabs",
+      layoutTabs,
+    },
+    children: [
+      {
+        path: "red",
+        component: () => import("@/layouts/components/stub.vue"),
+        children: [
+          {
+            path: "",
+            component: () => import("@/pages/tabs/red/index.vue"),
+          },
+          {
+            path: "orange",
+            component: () => import("@/pages/tabs/red/pages/orange.vue"),
+            meta: {
+              layout: "extra"
+            },
+          },
+          {
+            path: "tomato",
+            component: () => import("@/pages/tabs/red/pages/tomato.vue"),
+            meta: {
+              layout: "extra"
+            },
+          }
+        ],
+      },
+      {
+        path: "green",
+        component: () => import("@/pages/tabs/green.vue"),
+      },
+      {
+        path: "blue",
+        component: () => import("@/pages/tabs/blue.vue"),
+      }
+    ],
   }
 ]
 

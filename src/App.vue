@@ -1,32 +1,36 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <layout />
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+html {
+  font-family: sans-serif;
 }
 
-nav {
-  padding: 30px;
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.box {
+  height: 200px;
+  width: 100%;
+  border-radius: 12px;
+  padding: 12px 24px;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+.set {
+  display: grid;
+  gap: 20px;
+
+  &_horizontal {
+    display: flex;
   }
 }
 </style>
+<script setup lang="ts">
+import Layout from "@/layouts/index.vue";
+</script>
