@@ -45,6 +45,9 @@ const routes = [
       {
         path: "red",
         component: () => import("@/layouts/components/stub.vue"),
+        meta: {
+          tabTitle: "RedTab",
+        },
         children: [
           {
             path: "",
@@ -68,10 +71,16 @@ const routes = [
       },
       {
         path: "green",
+        meta: {
+          tabTitle: "GreenTab",
+        },
         component: () => import("@/pages/tabs/green.vue"),
       },
       {
         path: "blue",
+        meta: {
+          tabTitle: "BlueTab",
+        },
         component: () => import("@/pages/tabs/blue.vue"),
       }
     ],

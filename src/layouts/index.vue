@@ -40,6 +40,17 @@ export default {
       return `layout-${this.layoutType}`;
     },
     layoutTabs() {
+      // при использовании parentRoute.children как табы
+      if (this.parentChildren) {
+        return this.parentChildren.map((i, k) => {
+          return {
+            path: i.path,
+            title: 'tabTitle' in i.meta && i.meta.tabTitle || `tab${k}`,
+          }
+        });
+      }
+
+      // при передачи табов как meta.layoutTabs
       if (this.layoutType === 'tabs') {
         if (this.routeHaveLayoutTabs) {
           return this.$route.meta.layoutTabs;
@@ -54,7 +65,12 @@ export default {
     parentRoute() {
       const currentInMatched = this.$route.matched.find(i => i.regex.test(this.$route.path));
       return currentInMatched && currentInMatched.parent;
-    }
+    },
+    parentChildren() {
+      if (!this.parentRoute) return [];
+      const parentRoute = this.$router.options.routes.find(i => this.parentRoute.regex.test(i.path) );
+      return parentRoute && parentRoute.children;
+    },
   },
 }
 </script>
