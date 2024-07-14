@@ -31,10 +31,6 @@ export default {
       type: Array,
       default: () => [],
     },
-    parentRoute: {
-      type: Object,
-      default: () => {},
-    },
   },
   methods: {
     handleBack() {
