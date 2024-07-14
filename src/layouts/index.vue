@@ -52,7 +52,7 @@ export default {
       return [];
     },
     parentRoute() {
-      const currentInMatched = this.$route.matched.find(i => i.path === this.$route.path);
+      const currentInMatched = this.$route.matched.find(i => i.regex.test(this.$route.path));
       return currentInMatched && currentInMatched.parent;
     }
   },
