@@ -1,3 +1,7 @@
+Vue router layouts system same as in nuxt3. Probably can use in Vue 3 composition api + Vue router 4. As starter used Vue-cli.
+
+
+
 # vue-router-layout
 
 ## Project setup
